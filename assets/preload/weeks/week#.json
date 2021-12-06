@@ -1,0 +1,48 @@
+{
+	"songs": [
+		[
+			"Surfs-up",
+			"BB",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Tides",
+			"BB",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Beach-Brawl",
+			"BB",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"hideFreeplay": false,
+	"weekBackground": "beach",
+	"weekCharacters": [
+		"bb",
+		"bf",
+		"gf"
+	],
+	"storyName": "Brother bad boy",
+	"weekName": "week#",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"hideStoryMode": false,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}
