@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Menu_brother.png">
+	<!-- Created with Adobe Animate version 19.2.1.408 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="M BB Idle0000" x="3259" y="0" width="355" height="476" pivotX="-73.8" pivotY="-110.05" frameX="-6" frameY="0" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0001" x="3259" y="0" width="355" height="476" frameX="-6" frameY="0" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0002" x="3614" y="0" width="369" height="465" frameX="0" frameY="-11" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0003" x="3614" y="0" width="369" height="465" frameX="0" frameY="-11" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0004" x="0" y="476" width="359" height="463" frameX="-4" frameY="-13" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0005" x="0" y="476" width="359" height="463" frameX="-4" frameY="-13" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0006" x="359" y="476" width="352" height="466" frameX="-8" frameY="-10" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0007" x="359" y="476" width="352" height="466" frameX="-8" frameY="-10" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0008" x="711" y="476" width="351" height="475" frameX="-8" frameY="-1" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0009" x="711" y="476" width="351" height="475" frameX="-8" frameY="-1" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0010" x="3259" y="0" width="355" height="476" frameX="-6" frameY="0" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0011" x="3259" y="0" width="355" height="476" frameX="-6" frameY="0" frameWidth="369" frameHeight="476"/>
+	<SubTexture name="M BB Idle0012" x="3259" y="0" width="355" height="476" frameX="-6" frameY="0" frameWidth="369" frameHeight="476"/>
+</TextureAtlas>

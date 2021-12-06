@@ -1,0 +1,11 @@
+{
+	
+	"image": "Menu_brother",
+	"position": [
+		66,
+		60
+	],
+	"scale": 0.8,
+	"idle_anim": "M BB Idle",
+	"confirm_anim": "M BB Idle"
+}
