@@ -505,7 +505,7 @@ class PlayState extends MusicBeatState
 				add(bg);
 
 				if(!ClientPrefs.lowQuality) {
-					upperBoppers = new BGSprite('christmas/upperBop', -240, -90, 0.33, 0.33, ['Upper Crowd Bob']);
+					upperBoppers = new BGSprite('christmas/upperBop', -240, -90, 0.10000, 0.33, ['Upper Crowd Bob']);
 					upperBoppers.setGraphicSize(Std.int(upperBoppers.width * 0.85));
 					upperBoppers.updateHitbox();
 					add(upperBoppers);
@@ -516,7 +516,7 @@ class PlayState extends MusicBeatState
 					add(bgEscalator);
 				}
 
-				var tree:BGSprite = new BGSprite('christmas/christmasTree', 370, -250, 0.40, 0.40);
+				var tree:BGSprite = new BGSprite('christmas/christmasTree', 370, -250, 0.9000, 0.4000);
 				add(tree);
 
 				bottomBoppers = new BGSprite('christmas/bottomBop', -300, 140, 0.9, 0.9, ['Bottom Level Boppers Idle']);
@@ -531,6 +531,20 @@ class PlayState extends MusicBeatState
 				santa = new BGSprite('christmas/santa', -840, 150, 1, 1, ['santa idle in fear']);
 				add(santa);
 				CoolUtil.precacheSound('Lights_Shut_off');
+
+			case 'beach': //Week #
+				var bg:BGSprite = new BGSprite('beach/beachBG', -1000, -500, 0.2, 0.2);
+				bg.setGraphicSize(Std.int(bg.width * 0.8));
+				bg.updateHitbox();
+				add(bg);
+
+				bottomBoppers = new BGSprite('beach/daBois', -300, 140, 0.9, 0.9, ['Bottom Level Boppers Idle']);
+				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
+				bottomBoppers.updateHitbox();
+				add(bottomBoppers);
+
+				var fgSand:BGSprite = new BGSprite('beach/fgSand', -600, 700);
+				add(fgSand);
 
 			case 'mallEvil': //Week 5 - Winter Horrorland
 				var bg:BGSprite = new BGSprite('christmas/evilBG', -400, -500, 0.2, 0.2);
@@ -556,7 +570,7 @@ class PlayState extends MusicBeatState
 
 				var repositionShit = -200;
 
-				var bgSchool:BGSprite = new BGSprite('weeb/weebSchool', repositionShit, 0, 0.6, 0.90);
+				var bgSchool:BGSprite = new BGSprite('weeb/weebSchool', repositionShit, 0, 0.6, 0.9000);
 				add(bgSchool);
 				bgSchool.antialiasing = false;
 
