@@ -1,18 +1,32 @@
 {
 	"dialogue": [
 		{
-			"expression": "talk",
-			"text": "kek?",
+			"speed": 0.04,
+			"portrait": "Bb",
 			"boxState": "normal",
-			"speed": 0.05,
-			"portrait": "bf"
+			"expression": "talk",
+			"text": "Oh, Look who showed up to the party"
 		},
 		{
-			"expression": "talk",
-			"text": "yay",
+			"speed": 0.045,
+			"portrait": "Bb",
 			"boxState": "normal",
+			"expression": "talk",
+			"text": "Listen kid, Do you really think i'm just gonna\\nlet you bone my sister"
+		},
+		{
+			"speed": 0.045,
+			"portrait": "Bb",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "if you want she heart, then you have to show me what you've got."
+		},
+		{
 			"speed": 0.05,
-			"portrait": "bf"
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "beep"
 		}
 	]
 }
