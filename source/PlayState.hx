@@ -538,7 +538,7 @@ class PlayState extends MusicBeatState
 				bg.updateHitbox();
 				add(bg);
 
-				bottomBoppers = new BGSprite('week#/beach/daBois', -300, 140, 0.9, 0.9, ['Bottom Level Boppers Idle']);
+				bottomBoppers = new BGSprite('week#/beach/daBois', -300, 140, 0.9, 0.9, ['Bottom Level Boppers Idle', 24, false);
 				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
 				bottomBoppers.updateHitbox();
 				add(bottomBoppers);
