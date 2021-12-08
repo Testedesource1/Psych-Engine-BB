@@ -1981,7 +1981,7 @@ class PlayState extends MusicBeatState
 						}
 					}
 				}
-			case 'mall':
+			case 'beach':
 				if(heyTimer > 0) {
 					heyTimer -= elapsed;
 					if(heyTimer <= 0) {
@@ -3899,6 +3899,13 @@ class PlayState extends MusicBeatState
 
 				if(heyTimer <= 0) bottomBoppers.dance(true);
 				santa.dance(true);
+
+			case 'beach':
+				if(!ClientPrefs.lowQuality) {
+					upperBoppers.dance(true);
+				}
+
+				if(heyTimer <= 0) bottomBoppers.dance(true);
 
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
