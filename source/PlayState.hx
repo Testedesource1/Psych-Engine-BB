@@ -538,8 +538,8 @@ class PlayState extends MusicBeatState
 				bg.updateHitbox();
 				add(bg);
 
-				bottomBoppers = new BGSprite('week#/beach/daBois', -300, 140, 0.9, 0.9, ['Bottom Level Boppers Idle']);
-				bottomBoppers.animation.addByPrefix('hey', 'Bottom Level Boppers Idle', 24, false);
+				bottomBoppers = new BGSprite('week#/beach/daBois', -300, 140, 0.9, 0.9, ['daBoisIdle']);
+				bottomBoppers.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
 				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
 				bottomBoppers.updateHitbox();
 				add(bottomBoppers);
@@ -1981,7 +1981,7 @@ class PlayState extends MusicBeatState
 						}
 					}
 				}
-			case 'beach':
+			case 'mall':
 				if(heyTimer > 0) {
 					heyTimer -= elapsed;
 					if(heyTimer <= 0) {
@@ -3899,13 +3899,6 @@ class PlayState extends MusicBeatState
 
 				if(heyTimer <= 0) bottomBoppers.dance(true);
 				santa.dance(true);
-
-			case 'beach':
-				if(!ClientPrefs.lowQuality) {
-					upperBoppers.dance(true);
-				}
-
-				if(heyTimer <= 0) bottomBoppers.dance(true);
 
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
