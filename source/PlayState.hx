@@ -223,6 +223,7 @@ class PlayState extends MusicBeatState
 	public var songMisses:Int = 0;
 	public var ghostMisses:Int = 0;
 	public var scoreTxt:FlxText;
+	var creditTxt:FlxText;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
 
@@ -327,8 +328,8 @@ class PlayState extends MusicBeatState
 					curStage = 'philly';
 				case 'milf' | 'satin-panties' | 'high':
 					curStage = 'limo';
-				case 'cocoa' | 'eggnog':
-					curStage = 'mall';
+				case 'surfs-up' | 'tides' | 'beach-brawl':
+					curStage = 'beach';
 				case 'winter-horrorland':
 					curStage = 'mallEvil';
 				case 'senpai' | 'roses':
@@ -498,40 +499,6 @@ class PlayState extends MusicBeatState
 				fastCar.active = true;
 				limoKillingState = 0;
 
-			case 'mall': //Week 5 - Cocoa, Eggnog
-				var bg:BGSprite = new BGSprite('christmas/bgWalls', -1000, -500, 0.2, 0.2);
-				bg.setGraphicSize(Std.int(bg.width * 0.8));
-				bg.updateHitbox();
-				add(bg);
-
-				if(!ClientPrefs.lowQuality) {
-					upperBoppers = new BGSprite('christmas/upperBop', -240, -90, 0.10000, 0.100000, ['Upper Crowd Bob']);
-					upperBoppers.setGraphicSize(Std.int(upperBoppers.width * 0.85));
-					upperBoppers.updateHitbox();
-					add(upperBoppers);
-
-					var bgEscalator:BGSprite = new BGSprite('christmas/bgEscalator', -1100, -600, 0.90000, 0.90000);
-					bgEscalator.setGraphicSize(Std.int(bgEscalator.width * 0.9));
-					bgEscalator.updateHitbox();
-					add(bgEscalator);
-				}
-
-				var tree:BGSprite = new BGSprite('christmas/christmasTree', 370, -250, 0.9000, 0.4000);
-				add(tree);
-
-				bottomBoppers = new BGSprite('christmas/bottomBop', -300, 140, 0.9, 0.9, ['Bottom Level Boppers Idle']);
-				bottomBoppers.animation.addByPrefix('hey', 'Bottom Level Boppers HEY', 24, false);
-				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
-				bottomBoppers.updateHitbox();
-				add(bottomBoppers);
-
-				var fgSnow:BGSprite = new BGSprite('christmas/fgSnow', -600, 700);
-				add(fgSnow);
-
-				santa = new BGSprite('christmas/santa', -840, 150, 1, 1, ['santa idle in fear']);
-				add(santa);
-				CoolUtil.precacheSound('Lights_Shut_off');
-
 			case 'beach': //Week #
 				var bg:BGSprite = new BGSprite('week#/beach/beachBG', -1000, -500, 0.2, 0.2);
 				bg.setGraphicSize(Std.int(bg.width * 0.8));
@@ -571,7 +538,7 @@ class PlayState extends MusicBeatState
 
 				var repositionShit = -200;
 
-				var bgSchool:BGSprite = new BGSprite('weeb/weebSchool', repositionShit, 0, 0.6, 0.9000);
+				var bgSchool:BGSprite = new BGSprite('weeb/weebSchool', repositionShit, 0, 0.6, 0.90);
 				add(bgSchool);
 				bgSchool.antialiasing = false;
 
@@ -725,7 +692,7 @@ class PlayState extends MusicBeatState
 			{
 				case 'limo':
 					gfVersion = 'gf-car';
-				case 'mall' | 'mallEvil':
+				case 'beach' | 'mallEvil':
 					gfVersion = 'gf-christmas';
 				case 'school' | 'schoolEvil':
 					gfVersion = 'gf-pixel';
@@ -922,6 +889,13 @@ class PlayState extends MusicBeatState
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
+
+		creditTxt = new FlxText(876, 620, 348);
+        creditTxt.text = 'Ported By\nFirey';
+        creditTxt.setFormat(Paths.font("vcr.ttf"), 30, FlxColor.WHITE, RIGHT);
+        creditTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 3, 1);       
+        creditTxt.scrollFactor.set();
+        add(creditTxt);
 
 		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -1371,13 +1345,11 @@ class PlayState extends MusicBeatState
 					antialias = false;
 				}
 
-				// head bopping for bg characters on Mall
-				if(curStage == 'mall') {
+				// head bopping for bg characters on beach
+				if(curStage == 'beach') {
 					if(!ClientPrefs.lowQuality)
-						upperBoppers.dance(true);
 	
 					bottomBoppers.dance(true);
-					santa.dance(true);
 				}
 
 				switch (swagCounter)
@@ -1981,7 +1953,7 @@ class PlayState extends MusicBeatState
 						}
 					}
 				}
-			case 'mall':
+			case 'beach':
 				if(heyTimer > 0) {
 					heyTimer -= elapsed;
 					if(heyTimer <= 0) {
@@ -2514,8 +2486,8 @@ class PlayState extends MusicBeatState
 						gf.heyTimer = time;
 					}
 
-					if(curStage == 'mall') {
-						bottomBoppers.animation.play('hey', true);
+					if(curStage == 'beach') {
+						bottomBoppers.animation.play('hey', false);
 						heyTimer = time;
 					}
 				}
@@ -2850,7 +2822,7 @@ class PlayState extends MusicBeatState
 			{
 				case 'limo':
 					camFollow.x = boyfriend.getMidpoint().x - 300;
-				case 'mall':
+				case 'beach':
 					camFollow.y = boyfriend.getMidpoint().y - 200;
 				case 'school' | 'schoolEvil':
 					camFollow.x = boyfriend.getMidpoint().x - 200;
@@ -3892,13 +3864,10 @@ class PlayState extends MusicBeatState
 					bgGirls.dance();
 				}
 
-			case 'mall':
+			case 'beach':
 				if(!ClientPrefs.lowQuality) {
-					upperBoppers.dance(true);
+					bottomBoppers.dance(true);
 				}
-
-				if(heyTimer <= 0) bottomBoppers.dance(true);
-				santa.dance(true);
 
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
