@@ -1,18 +1,39 @@
 {
 	"dialogue": [
 		{
-			"expression": "talk",
-			"text": "kek?",
+			"speed": 0.03,
+			"portrait": "Bb",
 			"boxState": "normal",
-			"speed": 0.05,
-			"portrait": "bf"
+			"expression": "BAD",
+			"text": "..."
 		},
 		{
-			"expression": "talk",
-			"text": "yay",
+			"speed": 0.045,
+			"portrait": "Bb",
+			"boxState": "angry",
+			"expression": "ANGRY",
+			"text": "Alright runt, I've had enough of you."
+		},
+		{
+			"speed": 0.04,
+			"portrait": "Bb",
 			"boxState": "normal",
+			"expression": "ANGRY",
+			"text": "You've made me look bad in front of an entire crowd."
+		},
+		{
+			"speed": 0.04,
+			"portrait": "Bb",
+			"boxState": "normal",
+			"expression": "ANGRY",
+			"text": "Goodluck on this next one, because you're gonna need it."
+		},
+		{
 			"speed": 0.05,
-			"portrait": "bf"
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "Beep bo bop"
 		}
 	]
 }
