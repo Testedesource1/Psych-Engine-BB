@@ -1,18 +1,32 @@
 {
 	"dialogue": [
 		{
-			"expression": "talk",
-			"text": "kek?",
+			"speed": 0.03,
+			"portrait": "Bb",
 			"boxState": "normal",
-			"speed": 0.05,
-			"portrait": "bf"
+			"expression": "talk",
+			"text": "Wow, i underestimated your skills."
 		},
 		{
-			"expression": "talk",
-			"text": "yay",
+			"speed": 0.045,
+			"portrait": "Bb",
 			"boxState": "normal",
+			"expression": "talk",
+			"text": "The show's not over yet,don't think im gonna go that easily."
+		},
+		{
+			"speed": 0.04,
+			"portrait": "Bb",
+			"boxState": "angry",
+			"expression": "ANGRY",
+			"text": "Get ready for round 2, punk!"
+		},
+		{
 			"speed": 0.05,
-			"portrait": "bf"
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "Beep ba bi po bop"
 		}
 	]
 }
