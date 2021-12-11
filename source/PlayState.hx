@@ -94,7 +94,7 @@ class PlayState extends MusicBeatState
 	#end
 
 	//event variables
-	private var isCameraOnForcedPos:Bool = false;
+	var isCameraOnForcedPos:Bool = false;
 	#if (haxe >= "4.0.0")
 	var boyfriendMap:Map<String, Boyfriend> = new Map();
 	var dadMap:Map<String, Character> = new Map();
@@ -136,11 +136,11 @@ class PlayState extends MusicBeatState
 	var unspawnNotes:Array<Note> = [];
 	var eventNotes:Array<Dynamic> = [];
 
-	private var strumLine:FlxSprite;
+	var strumLine:FlxSprite;
 
 	//Handles the new epic mega sexy cam code that i've done
-	private var camFollow:FlxPoint;
-	private var camFollowPos:FlxObject;
+	var camFollow:FlxPoint;
+	var camFollowPos:FlxObject;
 	private static var prevCamFollow:FlxPoint;
 	private static var prevCamFollowPos:FlxObject;
 	private static var resetSpriteCache:Bool = false;
@@ -151,23 +151,23 @@ class PlayState extends MusicBeatState
 	var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
 
 	var camZooming:Bool = false;
-	private var curSong:String = "";
+	var curSong:String = "";
 
 	var gfSpeed:Int = 1;
 	var health:Float = 1;
 	var combo:Int = 0;
 
-	private var healthBarBG:AttachedSprite;
+	var healthBarBG:AttachedSprite;
 	var healthBar:FlxBar;
 	var songPercent:Float = 0;
 
-	private var timeBarBG:AttachedSprite;
+	var timeBarBG:AttachedSprite;
 	var timeBar:FlxBar;
 
-	private var generatedMusic:Bool = false;
+	var generatedMusic:Bool = false;
 	var endingSong:Bool = false;
-	private var startingSong:Bool = false;
-	private var updateTime:Bool = false;
+	var startingSong:Bool = false;
+	var updateTime:Bool = false;
 	public static var practiceMode:Bool = false;
 	public static var usedPractice:Bool = false;
 	public static var changedDifficulty:Bool = false;
@@ -251,7 +251,7 @@ class PlayState extends MusicBeatState
 	var mcontrols:Mobilecontrols; 
 	#end	
 
-	private var luaArray:Array<FunkinLua> = [];
+	var luaArray:Array<FunkinLua> = [];
 
 	//Achievement shit
 	var keysPressed:Array<Bool> = [false, false, false, false];
@@ -259,7 +259,7 @@ class PlayState extends MusicBeatState
 	var boyfriendIdled:Bool = false;
 
 	// Lua shit
-	private var luaDebugGroup:FlxTypedGroup<DebugLuaText>;
+	var luaDebugGroup:FlxTypedGroup<DebugLuaText>;
 	var introSoundsSuffix:String = '';
 
 	override function create()
@@ -1489,8 +1489,8 @@ class PlayState extends MusicBeatState
 	}
 
 	var debugNum:Int = 0;
-	private var noteTypeMap:Map<String, Bool> = new Map<String, Bool>();
-	private var eventPushedMap:Map<String, Bool> = new Map<String, Bool>();
+	var noteTypeMap:Map<String, Bool> = new Map<String, Bool>();
+	var eventPushedMap:Map<String, Bool> = new Map<String, Bool>();
 	function generateSong(dataPath:String):Void
 	{
 		// FlxG.log.add(ChartParser.parse());
@@ -1840,7 +1840,7 @@ class PlayState extends MusicBeatState
 		vocals.play();
 	}
 
-	private var paused:Bool = false;
+	var paused:Bool = false;
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
@@ -3741,7 +3741,7 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	private var preventLuaRemove:Bool = false;
+	var preventLuaRemove:Bool = false;
 	override function destroy() {
 		preventLuaRemove = true;
 		for (i in 0...luaArray.length) {
