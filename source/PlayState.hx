@@ -191,12 +191,12 @@ class PlayState extends MusicBeatState
 	var halloweenWhite:BGSprite;
 
 	var phillyCityLights:FlxTypedGroup<BGSprite>;
-	var WAVEMOM:BGSprite;
+	var phillyTrain:BGSprite;
 	var blammedLightsBlack:ModchartSprite;
 	var blammedLightsBlackTween:FlxTween;
 	var phillyCityLightsEvent:FlxTypedGroup<BGSprite>;
 	var phillyCityLightsEventTween:FlxTween;
-	var WAVESound:FlxSound;
+	var trainSound:FlxSound;
 
 	var limoKillingState:Int = 0;
 	var limo:BGSprite;
@@ -436,16 +436,16 @@ class PlayState extends MusicBeatState
 				}
 
 				if(!ClientPrefs.lowQuality) {
-					var streetBehind:BGSprite = new BGSprite('philly/behindWAVE', -40, 50);
+					var streetBehind:BGSprite = new BGSprite('philly/behindTrain', -40, 50);
 					add(streetBehind);
 				}
 
-				WAVEMOM = new BGSprite('philly/WAVE', 2000, 360);
-				add(WAVEMOM);
+				phillyTrain = new BGSprite('philly/train', 2000, 360);
+				add(phillyTrain);
 
-				WAVESound = new FlxSound().loadEmbedded(Paths.sound('WAVE_passes'));
-				CoolUtil.precacheSound('WAVE_passes');
-				FlxG.sound.list.add(WAVESound);
+				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
+				CoolUtil.precacheSound('train_passes');
+				FlxG.sound.list.add(trainSound);
 
 				var street:BGSprite = new BGSprite('philly/street', -40, 50);
 				add(street);
@@ -495,7 +495,7 @@ class PlayState extends MusicBeatState
 
 				limo = new BGSprite('limo/limoDrive', -120, 550, 1, 1, ['Limo stage'], true);
 
-				fastCar = new BGSprite('limo/fastCarLol', -300, 160);
+				fastCar = new BGSprite('week#/beach/movingwaves', -300, 140);
 				fastCar.active = true;
 				limoKillingState = 0;
 
@@ -505,15 +505,12 @@ class PlayState extends MusicBeatState
 				bg.updateHitbox();
 				add(bg);
 
-				movingwaves = new BGSprite('week#/beach/movingwaves', -300, 140, 0.3, 0.3, ['Waves']);
-				movingwaves.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
-				movingwaves.setGraphicSize(Std.int(movingwaves.width * 0.75));
-				movingwaves.updateHitbox();
-				add(movingwaves);
-
-				WAVESound = new FlxSound().loadEmbedded(Paths.sound('WAVESHIT'));
-				CoolUtil.precacheSound('WAVESHIT');
-				FlxG.sound.list.add(WAVESound);
+				fastCar = new BGSprite('week#/beach/movingwaves', -300, 140, 0.3, 0.3, ['Waves']);
+				fastCar.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
+				fastCar.setGraphicSize(Std.int(fastCar.width * 0.85));
+				fastCar.updateHitbox();
+				add(fastCar);
+				fastCar.active = true;
 
 				bottomBoppers = new BGSprite('week#/beach/daBois', -300, 140, 0.9, 0.9, ['daBoisIdle']);
 				bottomBoppers.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
@@ -736,7 +733,7 @@ class PlayState extends MusicBeatState
 
 		switch(curStage)
 		{
-			case 'limo':
+			case 'beach':
 				resetFastCar();
 				insert(members.indexOf(gfGroup) - 1, fastCar);
 			
@@ -1867,15 +1864,15 @@ class PlayState extends MusicBeatState
 				if(!ClientPrefs.lowQuality && bgGhouls.animation.curAnim.finished) {
 					bgGhouls.visible = false;
 				}
-			case 'beach':
-				if (WAVEMoving)
+			case 'philly':
+				if (trainMoving)
 				{
-					WAVEFrameTiming += elapsed;
+					trainFrameTiming += elapsed;
 
-					if (WAVEFrameTiming >= 1 / 24)
+					if (trainFrameTiming >= 1 / 24)
 					{
-						updateWAVEPos();
-						WAVEFrameTiming = 0;
+						updateTrainPos();
+						trainFrameTiming = 0;
 					}
 				}
 				phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed * 1.5;
@@ -3607,8 +3604,8 @@ class PlayState extends MusicBeatState
 
 	function resetFastCar():Void
 	{
-		fastCar.x = -12600;
-		fastCar.y = FlxG.random.int(140, 250);
+		fastCar.x = -300;
+		fastCar.y = FlxG.random.int(-300, 140);
 		fastCar.velocity.x = 0;
 		fastCarCanDrive = true;
 	}
@@ -3617,71 +3614,71 @@ class PlayState extends MusicBeatState
 	function fastCarDrive()
 	{
 		//trace('Car drive');
-		FlxG.sound.play(Paths.soundRandom('carPass', 0, 1), 0.7);
+		FlxG.sound.play(Paths.soundRandom('WAVESHIT', 0, 1), 0.7);
 
-		fastCar.velocity.x = (FlxG.random.int(170, 220) / FlxG.elapsed) * 3;
+		fastCar.velocity.x = (FlxG.random.int(1,1) / FlxG.elapsed) * 1;
 		fastCarCanDrive = false;
-		carTimer = new FlxTimer().start(2, function(tmr:FlxTimer)
+		carTimer = new FlxTimer().start(3, function(tmr:FlxTimer)
 		{
 			resetFastCar();
 			carTimer = null;
 		});
 	}
 
-	var WAVEMoving:Bool = false;
-	var WAVEFrameTiming:Float = 0;
+	var trainMoving:Bool = false;
+	var trainFrameTiming:Float = 0;
 
-	var WAVECars:Int = 1;
-	var WAVEFinishing:Bool = false;
-	var WAVECooldown:Int = 1;
+	var trainCars:Int = 8;
+	var trainFinishing:Bool = false;
+	var trainCooldown:Int = 0;
 
-	function WAVEStart():Void
+	function trainStart():Void
 	{
-		WAVEMoving = true;
-		if (!WAVESound.playing)
-			WAVESound.play(true);
+		trainMoving = true;
+		if (!trainSound.playing)
+			trainSound.play(true);
 	}
 
 	var startedMoving:Bool = false;
 
-	function updateWAVEPos():Void
+	function updateTrainPos():Void
 	{
-		if (WAVESound.time >= 4700)
+		if (trainSound.time >= 4700)
 		{
 			startedMoving = true;
 			gf.playAnim('hairBlow');
-			gf.specialAnim = false;
+			gf.specialAnim = true;
 		}
 
 		if (startedMoving)
 		{
-			WAVEMOM.x -= 400;
+			phillyTrain.x -= 400;
 
-			if (WAVEMOM.x < -2000 && !WAVEFinishing)
+			if (phillyTrain.x < -2000 && !trainFinishing)
 			{
-				WAVEMOM.x = -1150;
-				WAVECars -= 1;
+				phillyTrain.x = -1150;
+				trainCars -= 1;
 
-				if (WAVECars <= 0)
-					WAVEFinishing = true;
+				if (trainCars <= 0)
+					trainFinishing = true;
 			}
 
-			if (WAVEMOM.x < -4000 && WAVEFinishing)
-				WAVEReset();
+			if (phillyTrain.x < -4000 && trainFinishing)
+				trainReset();
 		}
 	}
 
-	function WAVEReset():Void
+	function trainReset():Void
 	{
-		gf.danced = true; //Sets head to the correct position once the animation ends
+		gf.danced = false; //Sets head to the correct position once the animation ends
 		gf.playAnim('hairFall');
-		gf.specialAnim = false;
-		WAVEMOM.x = FlxG.width + 200;
-		WAVEMoving = false;
-		// WAVESound.stop();
-		// WAVESound.time = 0;
-		WAVECars = 0;
-		WAVEFinishing = false;
+		gf.specialAnim = true;
+		phillyTrain.x = FlxG.width + 200;
+		trainMoving = false;
+		// trainSound.stop();
+		// trainSound.time = 0;
+		trainCars = 8;
+		trainFinishing = false;
 		startedMoving = false;
 	}
 
@@ -3879,6 +3876,9 @@ class PlayState extends MusicBeatState
 					bottomBoppers.dance(true);
 				}
 
+				if (FlxG.random.bool(10) && fastCarCanDrive)
+					fastCarDrive();
+
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
 					grpLimoDancers.forEach(function(dancer:BackgroundDancer)
@@ -3889,14 +3889,27 @@ class PlayState extends MusicBeatState
 
 				if (FlxG.random.bool(10) && fastCarCanDrive)
 					fastCarDrive();
-			case "beach":
-				if (!WAVEMoving)
-					WAVECooldown += 1;
+			case "philly":
+				if (!trainMoving)
+					trainCooldown += 1;
 
-				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !WAVEMoving && WAVECooldown > 8)
+				if (curBeat % 4 == 0)
 				{
-					WAVECooldown = FlxG.random.int(-4, 0);
-					WAVEStart();
+					phillyCityLights.forEach(function(light:BGSprite)
+					{
+						light.visible = false;
+					});
+
+					curLight = FlxG.random.int(0, phillyCityLights.length - 1, [curLight]);
+
+					phillyCityLights.members[curLight].visible = true;
+					phillyCityLights.members[curLight].alpha = 1;
+				}
+
+				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
+				{
+					trainCooldown = FlxG.random.int(-4, 0);
+					trainStart();
 				}
 		}
 
