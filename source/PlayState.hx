@@ -209,7 +209,7 @@ class PlayState extends MusicBeatState
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
 	var fastCar:BGSprite;
 
-	var upperBoppers:BGSprite;
+	var movingwaves:BGSprite;
 	var bottomBoppers:BGSprite;
 	var santa:BGSprite;
 	var heyTimer:Float;
@@ -510,6 +510,12 @@ class PlayState extends MusicBeatState
 				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
 				bottomBoppers.updateHitbox();
 				add(bottomBoppers);
+
+				movingwaves = new BGSprite('week#/beach/movingwaves', -300, 140, 0.3, 0.3, ['Waves']);
+				movingwaves.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
+				movingwaves.setGraphicSize(Std.int(movingwaves.width * 1));
+				movingwaves.updateHitbox();
+				add(movingwaves);
 
 				var fgSand:BGSprite = new BGSprite('week#/beach/fgSand', -600, 700);
 				add(fgSand);
