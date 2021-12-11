@@ -3875,8 +3875,7 @@ class PlayState extends MusicBeatState
 					bottomBoppers.dance(true);
 				}
 
-				if (FlxG.random.bool(1) && movingwaves)
-
+				if (FlxG.random.bool(1) && movingwaves();
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
 					grpLimoDancers.forEach(function(dancer:BackgroundDancer)
