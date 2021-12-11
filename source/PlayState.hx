@@ -495,7 +495,7 @@ class PlayState extends MusicBeatState
 
 				limo = new BGSprite('limo/limoDrive', -120, 550, 1, 1, ['Limo stage'], true);
 
-				fastCar = new BGSprite('week#/beach/movingwaves', -300, 140);
+				fastCar = new BGSprite('limo/fastCarLol', -300, 160);
 				fastCar.active = true;
 				limoKillingState = 0;
 
@@ -505,14 +505,13 @@ class PlayState extends MusicBeatState
 				bg.updateHitbox();
 				add(bg);
 
-				fastCar = new BGSprite('week#/beach/movingwaves', -300, 140, 0.3, 0.3, ['Waves']);
-				fastCar.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
-				fastCar.setGraphicSize(Std.int(fastCar.width * 0.85));
-				fastCar.updateHitbox();
-				add(fastCar);
-				fastCar.active = true;
+				movingwaves = new BGSprite('week#/beach/movingwaves', -1600, 150, 0.3, 0.3, ['Waves']);
+				movingwaves.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
+				movingwaves.setGraphicSize(Std.int(movingwaves.width * 0.95));
+				movingwaves.updateHitbox();
+				add(movingwaves);
 
-				bottomBoppers = new BGSprite('week#/beach/daBois', -300, 140, 0.9, 0.9, ['daBoisIdle']);
+				bottomBoppers = new BGSprite('week#/beach/daBois', -300, 145, 0.9, 0.9, ['daBoisIdle']);
 				bottomBoppers.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
 				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 0.95));
 				bottomBoppers.updateHitbox();
@@ -733,7 +732,7 @@ class PlayState extends MusicBeatState
 
 		switch(curStage)
 		{
-			case 'beach':
+			case 'limo':
 				resetFastCar();
 				insert(members.indexOf(gfGroup) - 1, fastCar);
 			
@@ -3604,8 +3603,8 @@ class PlayState extends MusicBeatState
 
 	function resetFastCar():Void
 	{
-		fastCar.x = -300;
-		fastCar.y = FlxG.random.int(-300, 140);
+		fastCar.x = -12600;
+		fastCar.y = FlxG.random.int(140, 250);
 		fastCar.velocity.x = 0;
 		fastCarCanDrive = true;
 	}
@@ -3614,11 +3613,11 @@ class PlayState extends MusicBeatState
 	function fastCarDrive()
 	{
 		//trace('Car drive');
-		FlxG.sound.play(Paths.soundRandom('WAVESHIT', 0, 1), 0.7);
+		FlxG.sound.play(Paths.soundRandom('carPass', 0, 1), 0.7);
 
-		fastCar.velocity.x = (FlxG.random.int(1,1) / FlxG.elapsed) * 1;
+		fastCar.velocity.x = (FlxG.random.int(170, 220) / FlxG.elapsed) * 3;
 		fastCarCanDrive = false;
-		carTimer = new FlxTimer().start(3, function(tmr:FlxTimer)
+		carTimer = new FlxTimer().start(2, function(tmr:FlxTimer)
 		{
 			resetFastCar();
 			carTimer = null;
@@ -3876,8 +3875,7 @@ class PlayState extends MusicBeatState
 					bottomBoppers.dance(true);
 				}
 
-				if (FlxG.random.bool(10) && fastCarCanDrive)
-					fastCarDrive();
+				if (FlxG.random.bool(1) && movingwaves)
 
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
