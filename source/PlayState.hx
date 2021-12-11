@@ -82,41 +82,41 @@ class PlayState extends MusicBeatState
 	];
 	
 	#if (haxe >= "4.0.0")
-	public var modchartTweens:Map<String, FlxTween> = new Map();
-	public var modchartSprites:Map<String, ModchartSprite> = new Map();
-	public var modchartTimers:Map<String, FlxTimer> = new Map();
-	public var modchartSounds:Map<String, FlxSound> = new Map();
+	var modchartTweens:Map<String, FlxTween> = new Map();
+	var modchartSprites:Map<String, ModchartSprite> = new Map();
+	var modchartTimers:Map<String, FlxTimer> = new Map();
+	var modchartSounds:Map<String, FlxSound> = new Map();
 	#else
-	public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
-	public var modchartSprites:Map<String, ModchartSprite> = new Map<String, Dynamic>();
-	public var modchartTimers:Map<String, FlxTimer> = new Map<String, FlxTimer>();
-	public var modchartSounds:Map<String, FlxSound> = new Map<String, FlxSound>();
+	var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
+	var modchartSprites:Map<String, ModchartSprite> = new Map<String, Dynamic>();
+	var modchartTimers:Map<String, FlxTimer> = new Map<String, FlxTimer>();
+	var modchartSounds:Map<String, FlxSound> = new Map<String, FlxSound>();
 	#end
 
 	//event variables
 	private var isCameraOnForcedPos:Bool = false;
 	#if (haxe >= "4.0.0")
-	public var boyfriendMap:Map<String, Boyfriend> = new Map();
-	public var dadMap:Map<String, Character> = new Map();
-	public var gfMap:Map<String, Character> = new Map();
+	var boyfriendMap:Map<String, Boyfriend> = new Map();
+	var dadMap:Map<String, Character> = new Map();
+	var gfMap:Map<String, Character> = new Map();
 	#else
-	public var boyfriendMap:Map<String, Boyfriend> = new Map<String, Boyfriend>();
-	public var dadMap:Map<String, Character> = new Map<String, Character>();
-	public var gfMap:Map<String, Character> = new Map<String, Character>();
+	var boyfriendMap:Map<String, Boyfriend> = new Map<String, Boyfriend>();
+	var dadMap:Map<String, Character> = new Map<String, Character>();
+	var gfMap:Map<String, Character> = new Map<String, Character>();
 	#end
 
-	public var BF_X:Float = 770;
-	public var BF_Y:Float = 100;
-	public var DAD_X:Float = 100;
-	public var DAD_Y:Float = 100;
-	public var GF_X:Float = 400;
-	public var GF_Y:Float = 130;
+	var BF_X:Float = 770;
+	var BF_Y:Float = 100;
+	var DAD_X:Float = 100;
+	var DAD_Y:Float = 100;
+	var GF_X:Float = 400;
+	var GF_Y:Float = 130;
 	
 	public static var songSpeed:Float = 0;
 	
-	public var boyfriendGroup:FlxSpriteGroup;
-	public var dadGroup:FlxSpriteGroup;
-	public var gfGroup:FlxSpriteGroup;
+	var boyfriendGroup:FlxSpriteGroup;
+	var dadGroup:FlxSpriteGroup;
+	var gfGroup:FlxSpriteGroup;
 
 	public static var curStage:String = '';
 	public static var isPixelStage:Bool = false;
@@ -126,15 +126,15 @@ class PlayState extends MusicBeatState
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
 
-	public var vocals:FlxSound;
+	var vocals:FlxSound;
 
-	public var dad:Character;
-	public var gf:Character;
-	public var boyfriend:Boyfriend;
+	var dad:Character;
+	var gf:Character;
+	var boyfriend:Boyfriend;
 
-	public var notes:FlxTypedGroup<Note>;
-	public var unspawnNotes:Array<Note> = [];
-	public var eventNotes:Array<Dynamic> = [];
+	var notes:FlxTypedGroup<Note>;
+	var unspawnNotes:Array<Note> = [];
+	var eventNotes:Array<Dynamic> = [];
 
 	private var strumLine:FlxSprite;
 
@@ -145,27 +145,27 @@ class PlayState extends MusicBeatState
 	private static var prevCamFollowPos:FlxObject;
 	private static var resetSpriteCache:Bool = false;
 
-	public var strumLineNotes:FlxTypedGroup<StrumNote>;
-	public var opponentStrums:FlxTypedGroup<StrumNote>;
-	public var playerStrums:FlxTypedGroup<StrumNote>;
-	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
+	var strumLineNotes:FlxTypedGroup<StrumNote>;
+	var opponentStrums:FlxTypedGroup<StrumNote>;
+	var playerStrums:FlxTypedGroup<StrumNote>;
+	var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
 
-	public var camZooming:Bool = false;
+	var camZooming:Bool = false;
 	private var curSong:String = "";
 
-	public var gfSpeed:Int = 1;
-	public var health:Float = 1;
-	public var combo:Int = 0;
+	var gfSpeed:Int = 1;
+	var health:Float = 1;
+	var combo:Int = 0;
 
 	private var healthBarBG:AttachedSprite;
-	public var healthBar:FlxBar;
+	var healthBar:FlxBar;
 	var songPercent:Float = 0;
 
 	private var timeBarBG:AttachedSprite;
-	public var timeBar:FlxBar;
+	var timeBar:FlxBar;
 
 	private var generatedMusic:Bool = false;
-	public var endingSong:Bool = false;
+	var endingSong:Bool = false;
 	private var startingSong:Bool = false;
 	private var updateTime:Bool = false;
 	public static var practiceMode:Bool = false;
@@ -177,12 +177,12 @@ class PlayState extends MusicBeatState
 	var botplaySine:Float = 0;
 	var botplayTxt:FlxText;
 
-	public var iconP1:HealthIcon;
-	public var iconP2:HealthIcon;
-	public var camHUD:FlxCamera;
-	public var camGame:FlxCamera;
-	public var camOther:FlxCamera;
-	public var cameraSpeed:Float = 1;
+	var iconP1:HealthIcon;
+	var iconP2:HealthIcon;
+	var camHUD:FlxCamera;
+	var camGame:FlxCamera;
+	var camOther:FlxCamera;
+	var cameraSpeed:Float = 1;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 	var dialogueJson:DialogueFile = null;
@@ -218,11 +218,11 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	var bgGhouls:BGSprite;
 
-	public var songScore:Int = 0;
-	public var songHits:Int = 0;
-	public var songMisses:Int = 0;
-	public var ghostMisses:Int = 0;
-	public var scoreTxt:FlxText;
+	var songScore:Int = 0;
+	var songHits:Int = 0;
+	var songMisses:Int = 0;
+	var ghostMisses:Int = 0;
+	var scoreTxt:FlxText;
 	var creditTxt:FlxText;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
@@ -232,12 +232,12 @@ class PlayState extends MusicBeatState
 	public static var seenCutscene:Bool = false;
 	public static var deathCounter:Int = 0;
 
-	public var defaultCamZoom:Float = 1.05;
+	var defaultCamZoom:Float = 1.05;
 
 	// how big to stretch the pixel art assets
 	public static var daPixelZoom:Float = 6;
 
-	public var inCutscene:Bool = false;
+	var inCutscene:Bool = false;
 	var songLength:Float = 0;
 
 	#if desktop
@@ -260,7 +260,7 @@ class PlayState extends MusicBeatState
 
 	// Lua shit
 	private var luaDebugGroup:FlxTypedGroup<DebugLuaText>;
-	public var introSoundsSuffix:String = '';
+	var introSoundsSuffix:String = '';
 
 	override function create()
 	{
@@ -1282,7 +1282,7 @@ class PlayState extends MusicBeatState
 	var finishTimer:FlxTimer = null;
 
 	// For being able to mess with the sprites on Lua
-	public var countDownSprites:Array<FlxSprite> = [];
+	var countDownSprites:Array<FlxSprite> = [];
 
 	function startCountdown():Void
 	{
@@ -3931,8 +3931,8 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public var ratingString:String;
-	public var ratingPercent:Float;
+	var ratingString:String;
+	var ratingPercent:Float;
 	function RecalculateRating() {
 		setOnLuas('score', songScore);
 		setOnLuas('misses', songMisses);
