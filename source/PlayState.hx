@@ -191,12 +191,12 @@ class PlayState extends MusicBeatState
 	var halloweenWhite:BGSprite;
 
 	var phillyCityLights:FlxTypedGroup<BGSprite>;
-	var phillyTrain:BGSprite;
+	var movingwavesLol:BGSprite;
 	var blammedLightsBlack:ModchartSprite;
 	var blammedLightsBlackTween:FlxTween;
 	var phillyCityLightsEvent:FlxTypedGroup<BGSprite>;
 	var phillyCityLightsEventTween:FlxTween;
-	var trainSound:FlxSound;
+	var wavesSound:FlxSound;
 
 	var limoKillingState:Int = 0;
 	var limo:BGSprite;
@@ -440,13 +440,6 @@ class PlayState extends MusicBeatState
 					add(streetBehind);
 				}
 
-				phillyTrain = new BGSprite('philly/train', 2000, 360);
-				add(phillyTrain);
-
-				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
-				CoolUtil.precacheSound('train_passes');
-				FlxG.sound.list.add(trainSound);
-
 				var street:BGSprite = new BGSprite('philly/street', -40, 50);
 				add(street);
 
@@ -505,17 +498,21 @@ class PlayState extends MusicBeatState
 				bg.updateHitbox();
 				add(bg);
 
+				movingwaves = new BGSprite('week#/beach/movingwaves', -300, 140, 0.2, 0.2, ['Waves']);
+				movingwaves.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
+				movingwaves.setGraphicSize(Std.int(movingwaves.width * 0.85));
+				movingwaves.updateHitbox();
+				add(movingwaves);
+
+				wavesSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
+				CoolUtil.precacheSound('train_passes');
+				FlxG.sound.list.add(wavesSound);
+
 				bottomBoppers = new BGSprite('week#/beach/daBois', -300, 140, 0.9, 0.9, ['daBoisIdle']);
 				bottomBoppers.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
 				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
 				bottomBoppers.updateHitbox();
 				add(bottomBoppers);
-
-				movingwaves = new BGSprite('week#/beach/movingwaves', -300, 140, 0.3, 0.3, ['Waves']);
-				movingwaves.animation.addByPrefix('hey', 'daBoisHEY', 24, false);
-				movingwaves.setGraphicSize(Std.int(movingwaves.width * 1));
-				movingwaves.updateHitbox();
-				add(movingwaves);
 
 				var fgSand:BGSprite = new BGSprite('week#/beach/fgSand', -600, 700);
 				add(fgSand);
@@ -3631,11 +3628,11 @@ class PlayState extends MusicBeatState
 	var trainFinishing:Bool = false;
 	var trainCooldown:Int = 0;
 
-	function trainStart():Void
+	function wavesStart():Void
 	{
-		trainMoving = true;
-		if (!trainSound.playing)
-			trainSound.play(true);
+		movingwaves = true;
+		if (!wavesSound.playing)
+			wavesSound.play(true);
 	}
 
 	var startedMoving:Bool = false;
@@ -3651,27 +3648,18 @@ class PlayState extends MusicBeatState
 
 		if (startedMoving)
 		{
-			phillyTrain.x -= 400;
+			movingwaves.x -= 0;
 
-			if (phillyTrain.x < -2000 && !trainFinishing)
-			{
-				phillyTrain.x = -1150;
-				trainCars -= 1;
-
-				if (trainCars <= 0)
-					trainFinishing = true;
-			}
-
-			if (phillyTrain.x < -4000 && trainFinishing)
-				trainReset();
+			if (movingwaves.x < -9000 && wavesFinishing)
+				wavesReset();
 		}
 	}
 
-	function trainReset():Void
+	function wavesReset():Void
 	{
-		gf.danced = false; //Sets head to the correct position once the animation ends
+		gf.danced = true; //Sets head to the correct position once the animation ends
 		gf.playAnim('hairFall');
-		gf.specialAnim = true;
+		gf.specialAnim = false;
 		phillyTrain.x = FlxG.width + 200;
 		trainMoving = false;
 		// trainSound.stop();
