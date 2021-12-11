@@ -1491,7 +1491,7 @@ class PlayState extends MusicBeatState
 	var debugNum:Int = 0;
 	private var noteTypeMap:Map<String, Bool> = new Map<String, Bool>();
 	private var eventPushedMap:Map<String, Bool> = new Map<String, Bool>();
-	private function generateSong(dataPath:String):Void
+	function generateSong(dataPath:String):Void
 	{
 		// FlxG.log.add(ChartParser.parse());
         songSpeed = SONG.speed;
@@ -1678,7 +1678,7 @@ class PlayState extends MusicBeatState
 		return FlxSort.byValues(FlxSort.ASCENDING, Obj1[0] - earlyTime1, Obj2[0] - earlyTime2);
 	}
 
-	private function generateStaticArrows(player:Int):Void
+	function generateStaticArrows(player:Int):Void
 	{
 		for (i in 0...4)
 		{
@@ -3075,7 +3075,7 @@ class PlayState extends MusicBeatState
 		eventNotes = [];
 	}
 
-	private function popUpScore(note:Note = null):Void
+	function popUpScore(note:Note = null):Void
 	{
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + 8); 
 
@@ -3253,7 +3253,7 @@ class PlayState extends MusicBeatState
 		});
 	}
 
-	private function keyShit():Void
+	function keyShit():Void
 	{
 		// HOLDING
 		var up = controls.NOTE_UP;
@@ -3964,7 +3964,7 @@ class PlayState extends MusicBeatState
 	}
 
 	#if ACHIEVEMENTS_ALLOWED
-	private function checkForAchievement(achievesToCheck:Array<String>):String {
+	function checkForAchievement(achievesToCheck:Array<String>):String {
 		for (i in 0...achievesToCheck.length) {
 			var achievementName:String = achievesToCheck[i];
 			if(!Achievements.isAchievementUnlocked(achievementName)) {
