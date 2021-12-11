@@ -262,7 +262,7 @@ class PlayState extends MusicBeatState
 	private var luaDebugGroup:FlxTypedGroup<DebugLuaText>;
 	public var introSoundsSuffix:String = '';
 
-	override public function create()
+	override function create()
 	{
         #if MODS_ALLOWED
  		Paths.destroyLoadedImages(resetSpriteCache);
@@ -1059,20 +1059,20 @@ class PlayState extends MusicBeatState
 		super.create();
 	}
 
-	public function addTextToDebug(text:String) {
+	function addTextToDebug(text:String) {
 		luaDebugGroup.forEachAlive(function(spr:DebugLuaText) {
 			spr.y += 20;
 		});
 		luaDebugGroup.add(new DebugLuaText(text, luaDebugGroup));
 	}
 
-	public function reloadHealthBarColors() {
+	function reloadHealthBarColors() {
 		healthBar.createFilledBar(FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]),
 			FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]));
 		healthBar.updateBar();
 	}
 
-	public function addCharacterToList(newCharacter:String, type:Int) {
+	function addCharacterToList(newCharacter:String, type:Int) {
 		switch(type) {
 			case 0:
 				if(!boyfriendMap.exists(newCharacter)) {
@@ -1115,7 +1115,7 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
-	public function startVideo(name:String):Void {
+	function startVideo(name:String):Void {
 		var foundFile:Bool = false;
 		var fileName = name;
 		if(OpenFlAssets.exists("assets/videos/" + fileName + ".webm")) 
@@ -1160,7 +1160,7 @@ class PlayState extends MusicBeatState
 
 	var dialogueCount:Int = 0;
 	//You don't have to add a song, just saying. You can just do "startDialogue(dialogueJson);" and it should work
-	public function startDialogue(dialogueFile:DialogueFile, ?song:String = null):Void
+	function startDialogue(dialogueFile:DialogueFile, ?song:String = null):Void
 	{
 		#if mobileC
 		mcontrols.visible = false;
@@ -1284,7 +1284,7 @@ class PlayState extends MusicBeatState
 	// For being able to mess with the sprites on Lua
 	public var countDownSprites:Array<FlxSprite> = [];
 
-	public function startCountdown():Void
+	function startCountdown():Void
 	{
 		#if mobileC
 		mcontrols.visible = true;
@@ -1797,7 +1797,7 @@ class PlayState extends MusicBeatState
 		super.closeSubState();
 	}
 
-	override public function onFocus():Void
+	override function onFocus():Void
 	{
 		#if desktop
 		if (health > 0 && !paused)
@@ -1816,7 +1816,7 @@ class PlayState extends MusicBeatState
 		super.onFocus();
 	}
 	
-	override public function onFocusLost():Void
+	override function onFocusLost():Void
 	{
 		#if desktop
 		if (health > 0 && !paused)
@@ -1845,7 +1845,7 @@ class PlayState extends MusicBeatState
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
 
-	override public function update(elapsed:Float)
+	override function update(elapsed:Float)
 	{
 		/*if (FlxG.keys.justPressed.NINE)
 		{
@@ -2437,7 +2437,7 @@ class PlayState extends MusicBeatState
 		return false;
 	}
 
-	public function checkEventNote() {
+	function checkEventNote() {
 		while(eventNotes.length > 0) {
 			var early:Float = eventNoteEarlyTrigger(eventNotes[0]);
 			var leStrumTime:Float = eventNotes[0][0];
@@ -2458,13 +2458,13 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public function getControl(key:String) {
+	function getControl(key:String) {
 		var pressed:Bool = Reflect.getProperty(controls, key);
 		//trace('Control result: ' + pressed);
 		return pressed;
 	}
 
-	public function triggerEventNote(eventName:String, value1:String, value2:String) {
+	function triggerEventNote(eventName:String, value1:String, value2:String) {
 		switch(eventName) {
 			case 'Hey!':
 				var value:Int = 2;
@@ -2809,7 +2809,7 @@ class PlayState extends MusicBeatState
 	}
 
 	var cameraTwn:FlxTween;
-	public function moveCamera(isDad:Bool) {
+	function moveCamera(isDad:Bool) {
 		
 		
 		
@@ -2889,7 +2889,7 @@ class PlayState extends MusicBeatState
 
 
 	var transitioning = false;
-	public function endSong():Void
+	function endSong():Void
 	{
 		//Should kill you if you tried to cheat
 		if(!startingSong) {
@@ -3061,7 +3061,7 @@ class PlayState extends MusicBeatState
 	}
 	#end
 
-	public function KillNotes() {
+	function KillNotes() {
 		while(notes.length > 0) {
 			var daNote:Note = notes.members[0];
 			daNote.active = false;
@@ -3577,7 +3577,7 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public function spawnNoteSplash(x:Float, y:Float, data:Int, ?note:Note = null) {
+	function spawnNoteSplash(x:Float, y:Float, data:Int, ?note:Note = null) {
 		var skin:String = 'noteSplashes';
 		if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) skin = PlayState.SONG.splashSkin;
 		
@@ -3752,14 +3752,14 @@ class PlayState extends MusicBeatState
 		super.destroy();
 	}
 
-	public function cancelFadeTween() {
+	function cancelFadeTween() {
 		if(FlxG.sound.music.fadeTween != null) {
 			FlxG.sound.music.fadeTween.cancel();
 		}
 		FlxG.sound.music.fadeTween = null;
 	}
 
-	public function removeLua(lua:FunkinLua) {
+	function removeLua(lua:FunkinLua) {
 		if(luaArray != null && !preventLuaRemove) {
 			luaArray.remove(lua);
 		}
@@ -3909,7 +3909,7 @@ class PlayState extends MusicBeatState
 		return returnVal;
 	}
 
-	public function setOnLuas(variable:String, arg:Dynamic) {
+	function setOnLuas(variable:String, arg:Dynamic) {
 		#if LUA_ALLOWED
 		for (i in 0...luaArray.length) {
 			luaArray[i].set(variable, arg);
@@ -3933,7 +3933,7 @@ class PlayState extends MusicBeatState
 
 	public var ratingString:String;
 	public var ratingPercent:Float;
-	public function RecalculateRating() {
+	function RecalculateRating() {
 		setOnLuas('score', songScore);
 		setOnLuas('misses', songMisses);
 		setOnLuas('ghostMisses', songMisses);
