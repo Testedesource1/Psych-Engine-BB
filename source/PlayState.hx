@@ -3621,12 +3621,12 @@ class PlayState extends MusicBeatState
 		});
 	}
 
-	var trainMoving:Bool = false;
+	var movingwaves:Bool = false;
 	var trainFrameTiming:Float = 0;
 
 	var trainCars:Int = 8;
-	var trainFinishing:Bool = false;
-	var trainCooldown:Int = 0;
+	var wavesFinishing:Bool = false;
+	var wavesCooldown:Int = 0;
 
 	function wavesStart():Void
 	{
@@ -3635,15 +3635,15 @@ class PlayState extends MusicBeatState
 			wavesSound.play(true);
 	}
 
-	var startedMoving:Bool = false;
+	var startedMoving:BGSprite = false;
 
 	function updateTrainPos():Void
 	{
-		if (trainSound.time >= 4700)
+		if (wavesSound.time >= 1)
 		{
 			startedMoving = true;
 			gf.playAnim('hairBlow');
-			gf.specialAnim = true;
+			gf.specialAnim = false;
 		}
 
 		if (startedMoving)
@@ -3660,12 +3660,12 @@ class PlayState extends MusicBeatState
 		gf.danced = true; //Sets head to the correct position once the animation ends
 		gf.playAnim('hairFall');
 		gf.specialAnim = false;
-		phillyTrain.x = FlxG.width + 200;
-		trainMoving = false;
+		movingwavesLol.x = FlxG.width + 200;
+		movingwaves = false;
 		// trainSound.stop();
 		// trainSound.time = 0;
 		trainCars = 8;
-		trainFinishing = false;
+		wavesFinishing = false;
 		startedMoving = false;
 	}
 
@@ -3873,27 +3873,16 @@ class PlayState extends MusicBeatState
 
 				if (FlxG.random.bool(10) && fastCarCanDrive)
 					fastCarDrive();
-			case "philly":
-				if (!trainMoving)
-					trainCooldown += 1;
+			case "beach":
+				if (!movingwaves)
+					wavesCooldown += 1;
 
 				if (curBeat % 4 == 0)
 				{
-					phillyCityLights.forEach(function(light:BGSprite)
-					{
-						light.visible = false;
-					});
-
-					curLight = FlxG.random.int(0, phillyCityLights.length - 1, [curLight]);
-
-					phillyCityLights.members[curLight].visible = true;
-					phillyCityLights.members[curLight].alpha = 1;
-				}
-
-				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
+				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !movingwaves && wavesCooldown > 8)
 				{
-					trainCooldown = FlxG.random.int(-4, 0);
-					trainStart();
+					wavesCooldown = FlxG.random.int(-4, 0);
+					wavesStart();
 				}
 		}
 
